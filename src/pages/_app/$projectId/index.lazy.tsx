@@ -54,7 +54,7 @@ function RouteComponent() {
 				<TaskForm onRefetch={refetch} projectId={project?.project?._id!} />
 			</div>
 			<br />
-			<div className='grid grid-cols-5 gap-5'>
+			<div className='grid lg:grid-cols-3 xl:grid-cols-5 gap-5'>
 				{isLoading ? (
 					<>
 						{new Array(15).fill(15).map((_, idx) => (

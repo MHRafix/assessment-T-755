@@ -53,8 +53,8 @@ const TaskCard: FC<TaskProps> = ({ task, onRefetch }) => {
 					</DropdownMenuContent>
 				</DropdownMenu>
 				{/* )} */}
-				<p className='text-lg font-medium'>{task?.title}</p>
-				<p className='text-sm text-gray-500'>
+				<p className='text-lg font-medium capitalize'>{task?.title}</p>
+				<p className='text-sm text-gray-500 mb-2'>
 					{task?.description?.slice(0, 40) + '...'}
 				</p>
 				<AppBadge

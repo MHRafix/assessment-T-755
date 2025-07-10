@@ -43,7 +43,7 @@ function RouteComponent() {
 			</div>
 
 			<br />
-			<div className='grid grid-cols-3 gap-5'>
+			<div className='grid lg:grid-cols-2 xl:grid-cols-3 gap-5'>
 				{isLoading ? (
 					<>
 						{new Array(9).fill(9).map((_, idx) => (
