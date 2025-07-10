@@ -63,9 +63,15 @@ function RouteComponent() {
 					</>
 				) : (
 					<>
-						{data?.tasksByProjects?.map((task, idx) => (
-							<TaskCard key={idx} onRefetch={refetch} task={task} />
-						))}
+						{data?.tasksByProjects?.length ? (
+							<>
+								{data?.tasksByProjects?.map((task, idx) => (
+									<TaskCard key={idx} onRefetch={refetch} task={task} />
+								))}
+							</>
+						) : (
+							<p className='text-red-500'>No task available</p>
+						)}
 					</>
 				)}
 			</div>

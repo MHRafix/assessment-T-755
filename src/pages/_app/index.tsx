@@ -52,50 +52,56 @@ function RouteComponent() {
 					</>
 				) : (
 					<>
-						{data?.projects?.map((project, idx) => (
-							<div
-								key={idx}
-								className='relative border px-5 py-3 rounded-md cursor-pointer dark:hover:bg-gray-900 hover:bg-gray-100 hover:duration-300'
-							>
-								<DropdownMenu>
-									<DropdownMenuTrigger className='absolute right-1'>
-										<Button size={'sm'} variant='ghost'>
-											<EllipsisVertical />
-										</Button>
-									</DropdownMenuTrigger>
-									<DropdownMenuContent>
-										<DropdownMenuItem
+						{data?.projects?.length ? (
+							<>
+								{data?.projects?.map((project, idx) => (
+									<div
+										key={idx}
+										className='relative border px-5 py-3 rounded-md cursor-pointer dark:hover:bg-gray-900 hover:bg-gray-100 hover:duration-300'
+									>
+										<DropdownMenu>
+											<DropdownMenuTrigger className='absolute right-1'>
+												<Button size={'sm'} variant='ghost'>
+													<EllipsisVertical />
+												</Button>
+											</DropdownMenuTrigger>
+											<DropdownMenuContent>
+												<DropdownMenuItem
+													onClick={() =>
+														removeProjectMutation.mutate(project?._id!)
+													}
+												>
+													<Trash color='red' /> Remove
+												</DropdownMenuItem>
+											</DropdownMenuContent>
+										</DropdownMenu>
+										<div
+											className='flex gap-5 items-center'
 											onClick={() =>
-												removeProjectMutation.mutate(project?._id!)
+												navigate({
+													to: '/$projectId',
+													params: { projectId: project?._id! },
+												})
 											}
 										>
-											<Trash color='red' /> Remove
-										</DropdownMenuItem>
-									</DropdownMenuContent>
-								</DropdownMenu>
-								<div
-									className='flex gap-5 items-center'
-									onClick={() =>
-										navigate({
-											to: '/$projectId',
-											params: { projectId: project?._id! },
-										})
-									}
-								>
-									<img
-										src={project?.avatar}
-										alt='avatar'
-										className='w-[80px] h-[80px] rounded-full'
-									/>
-									<div>
-										<p className='text-xl font-medium'>{project?.title}</p>
-										<p className='text-md text-gray-500'>
-											{project?.description}
-										</p>
+											<img
+												src={project?.avatar}
+												alt='avatar'
+												className='w-[80px] h-[80px] rounded-full'
+											/>
+											<div>
+												<p className='text-xl font-medium'>{project?.title}</p>
+												<p className='text-md text-gray-500'>
+													{project?.description}
+												</p>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						))}
+								))}
+							</>
+						) : (
+							<p className='text-red-500'>No project available</p>
+						)}
 					</>
 				)}
 			</div>
