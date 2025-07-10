@@ -14,7 +14,6 @@ import { StorageUtil } from '@/lib/storage.util';
 import { fetchME } from '@/store/auth.atom';
 import { Link, useRouter } from '@tanstack/react-router';
 import { HomeIcon, LogOutIcon } from 'lucide-react';
-import { useAppConfirm } from './AppConfirm';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import {
@@ -34,7 +33,6 @@ const items = [
 ];
 
 const AppSidenav = () => {
-	const appConfirmHandle = useAppConfirm();
 	const router = useRouter();
 	const { state } = useSidebar();
 
@@ -135,16 +133,11 @@ const AppSidenav = () => {
 			<SidebarFooter>
 				<Button
 					variant={'ghost'}
-					onClick={() => {
-						appConfirmHandle.show({
-							title: 'Logout',
-							onConfirm: async () => {
-								StorageUtil.removeItem('token');
-								StorageUtil.removeItem('orgUID');
-								await fetchME();
-								router.invalidate();
-							},
-						});
+					onClick={async () => {
+						StorageUtil.removeItem('token');
+						StorageUtil.removeItem('orgUID');
+						await fetchME();
+						router.invalidate();
 					}}
 				>
 					<LogOutIcon />
