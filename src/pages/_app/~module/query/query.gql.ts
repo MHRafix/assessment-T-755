@@ -69,6 +69,11 @@ export const Update_Task_Mutation = gql`
 	}
 `;
 export const Remove_Task_Mutation = gql`
+	mutation RemoveProjectTask($removeProjectTaskId: String!) {
+		removeProjectTask(id: $removeProjectTaskId)
+	}
+`;
+export const Remove_Project_Mutation = gql`
 	mutation RemoveProject($removeProjectId: String!) {
 		removeProject(id: $removeProjectId) {
 			_id

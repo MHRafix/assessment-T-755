@@ -7,6 +7,7 @@ import { TaskFormStateType } from '../../$projectId/~module/components/TaskForm'
 import {
 	Create_Project_Mutation,
 	Create_Task_Mutation,
+	Remove_Project_Mutation,
 	Remove_Task_Mutation,
 	Update_Task_Mutation,
 } from '../query/query.gql';
@@ -72,7 +73,7 @@ export const projectApi = (onRedirect?: CallableFunction) => {
 	const removeProjectMutation = useMutation({
 		mutationFn: (payload: string) =>
 			gqlRequest({
-				query: Remove_Task_Mutation,
+				query: Remove_Project_Mutation,
 				variables: {
 					removeProjectId: payload,
 				},
